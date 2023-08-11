@@ -18,3 +18,8 @@ export async function getAllProjects() {
 }
 
 
+// Define a function to fetch data from Sanity
+export async function fetchSanityData() {
+  const query = '*[_type == "project"]'; // Example query
+  return await client.fetch(query);
+}

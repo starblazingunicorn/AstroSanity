@@ -23,9 +23,9 @@ const projects = await getAllProjects();
 
     <ul>
       {
-        posts.map((posts) => (
+        projects.map((posts) => (
           <li>
-            <img src={urlForImage(posts.mainImage).url()} />
+            <img style="width:200px"src={urlForImage(posts.mainImage).url()} />
             {posts.title}
             {posts.body}
           </li>
