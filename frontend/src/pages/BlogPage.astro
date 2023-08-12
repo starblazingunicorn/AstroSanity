@@ -1,16 +1,30 @@
 ---
-// import { fetchSanityData } from "../../lib/api";
-// ---
+// const response = await fetch('https://nvov5n5h.api.sanity.io/vX/data/query/production?query=*%5B_type+%3D%3D+%22post%22%5D');
+// const data = await response.json();
+import { useSanityClient, groq } from "astro-sanity";
+const data = await fetch(
+  "https://nvov5n5h.api.sanity.io/vX/data/query/production?query=*%5B_type+%3D%3D+%22project%22%5D"
+).then((response) => response.json());
+const projct = data.result;
+// console.log(data);
+---
 
-// <main>
-//   <h1>Sanity Data Example</h1>
-//   <ul>
-//     {#each (await fetchSanityData()) as project}
-//       <li>
-//         <h2>{project.title}</h2>
-//         <p>{project.body}</p>
-//       </li>
-//       {console.log(project)} <!-- Add this line -->
-//     {/each}
-//   </ul>
-// </main>
+<!-- Data fetched at build can be rendered in HTML -->
+<h1>posts</h1>
+<!-- // <img src={projct.mainImage.asset._ref} alt="Post Image" /> -->
+<div>
+  <div>
+    <h2>
+      {
+        projct.map((item) => (
+          <ul>
+            <li>{item.title}</li>
+   
+      
+            <p>Published At: {projct.publishedAt}</p>
+          </ul>
+        ))
+      }
+    </h2>
+  </div>
+</div>
